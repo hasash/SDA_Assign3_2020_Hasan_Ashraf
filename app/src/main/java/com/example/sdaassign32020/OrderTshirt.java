@@ -14,7 +14,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +36,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -50,6 +53,7 @@ public class OrderTshirt extends Fragment {
     private Spinner mSpinner;
     private EditText mCustomerName;
     private EditText meditDelivery;
+    private Button mSendButton;
     private ImageView mCameraImage;
     private EditText mcaptureImage;
     String currentPhotoPath;
@@ -65,6 +69,8 @@ public class OrderTshirt extends Fragment {
     Uri image_uri;
 
     private Context mContext;
+
+    //private String[] array = getResources().getStringArray(R.array.ui_time_entries);
 
     public OrderTshirt() {
         // Required empty public constructor
@@ -97,8 +103,23 @@ public class OrderTshirt extends Fragment {
             }
         });
 
+
         // send content to email
-        Button mSendButton = root.findViewById(R.id.sendButton);
+        mSendButton = root.findViewById(R.id.sendButton);
+
+       // final String[] array = root.
+
+
+
+        //initialise spinner using the integer array
+        mSpinner = root.findViewById(R.id.spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(root.getContext(), R.array.ui_time_entries, R.layout.spinner_days);
+        mSpinner.setAdapter(adapter);
+        mSpinner.setEnabled(true);
+        meditDelivery.addTextChangedListener(loginTextWatcher);
+
+
 
         //set a listener to start the email intent.
         mSendButton.setOnClickListener(new View.OnClickListener() {
@@ -108,16 +129,51 @@ public class OrderTshirt extends Fragment {
             }
         });
 
-
-        //initialise spinner using the integer array
-        mSpinner = root.findViewById(R.id.spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(root.getContext(), R.array.ui_time_entries, R.layout.spinner_days);
-        mSpinner.setAdapter(adapter);
-        mSpinner.setEnabled(true);
-
         return root;
     }
+
+    private TextWatcher loginTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String deliveryadd = meditDelivery.getText().toString().trim();
+
+
+            //String entries = ui_time_entries(0);
+
+            //String entries = array[0];
+
+            if (deliveryadd.isEmpty()){
+                //mSendButton.setEnabled(false);
+                String[] array = getResources().getStringArray(R.array.ui_time_entries);
+                String first_element = array[0];
+
+                /// DOES THE APP KNOW THAT THE VARAILE HAS BEEN UPDATED USING THE SPINNER??
+                if (first_element != "0"){
+                    mSendButton.setEnabled(true);
+                }
+                else {
+                    mSpinner.setEnabled(true);
+                    mSendButton.setEnabled(false);
+                }
+
+
+            }
+            else{
+                mSpinner.setEnabled(true);
+                mSendButton.setEnabled(true);
+            }
+            //mSendButton.setEnabled(!deliveryadd.isEmpty()); // || !entries.isEmpty());
+        }
+
+
+
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+    };
 
     private void askCameraPermissions() {
         //Toast.makeText(MainActivity, "Hello", Toast.LENGTH_SHORT).show();
