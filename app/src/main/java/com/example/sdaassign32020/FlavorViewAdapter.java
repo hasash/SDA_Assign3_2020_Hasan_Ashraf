@@ -30,12 +30,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 /*
- * @author Chris Coughlan 2019
+ * @author Hasan Ashraf 2020
  */
 public class FlavorViewAdapter extends RecyclerView.Adapter<FlavorViewAdapter.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
     private Context mNewContext;
-
     private OnItemClickListener mListener;
 
 
@@ -110,7 +109,7 @@ public class FlavorViewAdapter extends RecyclerView.Adapter<FlavorViewAdapter.Vi
         viewHolder.itemParentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mNewContext, current_item.getVersionName() + " Clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mNewContext, current_item.getVersionName() + " Selected", Toast.LENGTH_SHORT).show();
             }
         });
 

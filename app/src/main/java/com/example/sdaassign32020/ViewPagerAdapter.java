@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 /*
  * viewPager adapter.
- * @author Chris Coughlan 2019
+ * @author Hasan Ashraf
  */
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
@@ -19,7 +19,12 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         super(fm, behavior);
         context = nContext;
     }
-
+    /**
+     * Determines the default fragment that is displayed to the user
+     *
+     * @param position Parameter 1.
+     * @return The fragment that the user navigates too.
+     */
     @NonNull
     @Override
     public Fragment getItem(int position) {
@@ -48,12 +53,20 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
         return fragment;
     }
-
+    /**
+     * Count of the total number of fragmnet present in the layout
+     */
     @Override
     public int getCount() {
         return 3;
     }
 
+    /**
+     * Determines the naming of the tabs
+     *
+     * @param position Parameter 1.
+     * @return The tab title for the tab clicked by user
+     */
     @Override
     public CharSequence getPageTitle(int position) {
         position = position+1;

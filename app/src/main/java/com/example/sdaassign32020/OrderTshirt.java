@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,7 +56,7 @@ import com.google.firebase.storage.UploadTask;
 
 /*
  * A simple {@link Fragment} subclass.
- * @author Chris Coughlan 2019
+ * @author Hasan Ashraf 2020
  */
 public class OrderTshirt extends Fragment {
 
@@ -90,6 +91,8 @@ public class OrderTshirt extends Fragment {
     private String imageName = null;
     private static Uri fileUri = null;
     private static final int CAMERA_IMAGE_REQUEST=1;
+
+    //File f = new File(currentPhotoPath);
 
 
     //private String[] array = getResources().getStringArray(R.array.ui_time_entries);
@@ -132,6 +135,7 @@ public class OrderTshirt extends Fragment {
 
         // send content to email
         mSendButton = root.findViewById(R.id.sendButton);
+        //mSendButton.setEnabled(false);
 
        // final String[] array = root.
 
@@ -142,8 +146,37 @@ public class OrderTshirt extends Fragment {
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(root.getContext(), R.array.ui_time_entries, R.layout.spinner_days);
         mSpinner.setAdapter(adapter);
-        mSpinner.setEnabled(true);
+        //mSpinner.setEnabled(true);
+
+        //String element = mSpinner.getSelectedItem().toString();
+        //Log.d(TAG, "element field " + element);
         meditDelivery.addTextChangedListener(loginTextWatcher);
+
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+
+                String element = mSpinner.getSelectedItem().toString().trim();
+                Log.d(TAG, "element field1 " + element);
+                String falsevalue = "100";
+
+                if (element == falsevalue) {
+                    mSendButton.setEnabled(true);
+                    Log.d(TAG, "element field2 " + element);
+
+                    //element = mSpinner.getSelectedItem().toString();
+                }
+                else {
+                    mSendButton.setEnabled(false);
+                    Log.d(TAG, "element field3 " + element);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
+        //mSpinner.addTextChangedListener(loginTextWatcher);
 
 
 
@@ -164,38 +197,23 @@ public class OrderTshirt extends Fragment {
         }
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
+
             String deliveryadd = meditDelivery.getText().toString().trim();
 
-
-            //String entries = ui_time_entries(0);
-
-            //String entries = array[0];
-
             if (deliveryadd.isEmpty()){
+                mSpinner.setEnabled(true);
+                mSendButton.setEnabled(false);
                 //mSendButton.setEnabled(false);
-                String[] array = getResources().getStringArray(R.array.ui_time_entries);
-                String first_element = array[0];
-
-                /// DOES THE APP KNOW THAT THE VARAILE HAS BEEN UPDATED USING THE SPINNER??
-                if (first_element != "0"){
-                    mSendButton.setEnabled(true);
-                }
-                else {
-                    mSpinner.setEnabled(true);
-                    mSendButton.setEnabled(false);
-                }
-
-
+                //String[] array = getResources().getStringArray(R.array.ui_time_entries);
+                //String first_element = array[0];
+                Log.d(TAG, "element field11 ");
             }
             else{
-                mSpinner.setEnabled(true);
+                mSpinner.setEnabled(false);
                 mSendButton.setEnabled(true);
+                Log.d(TAG, "element field12 ");
             }
-            //mSendButton.setEnabled(!deliveryadd.isEmpty()); // || !entries.isEmpty());
         }
-
-
-
         @Override
         public void afterTextChanged(Editable s) {
         }
@@ -255,6 +273,7 @@ public class OrderTshirt extends Fragment {
 
 
     }
+
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -341,46 +360,6 @@ public class OrderTshirt extends Fragment {
 
     }
 
-
-
-/*
-        if(requestCode == GALLERY_REQUEST_CODE){
-            if(resultCode == Activity.RESULT_OK){
-                Uri contentUri = data.getData();
-                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-                String imageFileName = "JPEG_" + timeStamp +"."+getFileExt(contentUri);
-                Log.d("tag", "onActivityResult: Gallery Image Uri:  " +  imageFileName);
-                mCameraImage.setImageURI(contentUri);
-
-                uploadImageToFirebase(imageFileName,contentUri);
-
-
-
-
-            }
-
-        }
-
- */
-
-
-
-    /*
-    //Take a photo note the view is being passed so we can get context because it is a fragment.
-    //update this to save the image so it can be sent via email
-    private void dispatchTakePictureIntent(View v)
-    {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(v.getContext().getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-        }
-    }
-    */
-
-    /*
-     * Returns the Email Body Message, update this to handle either collection or delivery
-     */
-
     private void uploadImageToFirebase(String name, Uri contentUri) {
         Log.d(TAG, "Camera Upload Image to Firebase");
         final StorageReference image = storageReference.child("pictures/" + name);
@@ -402,7 +381,6 @@ public class OrderTshirt extends Fragment {
                 Toast.makeText(getContext(), "Upload Failled.", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
 
@@ -417,6 +395,8 @@ public class OrderTshirt extends Fragment {
         orderMessage += "\n" + deliveryInstruction;
         orderMessage += "\n" + getString(R.string.order_message_collect) + mSpinner.getSelectedItem().toString() + "days";
         orderMessage += "\n" + getString(R.string.order_message_end) + "\n" + mCustomerName.getText().toString();
+
+        //orderMessage +=  "\n" + setImageURI(Uri.fromFile(f));
 
         return orderMessage;
     }

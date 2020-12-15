@@ -26,7 +26,10 @@ public class ProductList extends Fragment {
     public ProductList() {
         // Required empty public constructor
     }
-
+    /**
+     * Default on Create View for appp to navigate using the recycler view.
+     * A log debug message is present to identify and debug stages in code
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,7 +37,6 @@ public class ProductList extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_product_list, container, false);
         // Create an ArrayList of AndroidFlavor objects
-
         createlist();
 
         //start it with the view
@@ -50,18 +52,21 @@ public class ProductList extends Fragment {
 
         return root;
     }
-
+    /**
+     * Creates a list of the Image and Text that need to be displayed ont the UI
+     * @return The list of items that user entered using recycler view
+     */
     public void createlist(){
-        mFlavor.add(new FlavorAdapter("Donut", "1.6", R.drawable.donut));
-        mFlavor.add(new FlavorAdapter("Eclair", "2.0-2.1", R.drawable.eclair));
-        mFlavor.add(new FlavorAdapter("Froyo", "2.2-2.2.3", R.drawable.froyo));
-        mFlavor.add(new FlavorAdapter("GingerBread", "2.3-2.3.7", R.drawable.gingerbread));
-        mFlavor.add(new FlavorAdapter("Honeycomb", "3.0-3.2.6", R.drawable.honeycomb));
-        mFlavor.add(new FlavorAdapter("Ice Cream Sandwich", "4.0-4.0.4", R.drawable.icecream));
-        mFlavor.add(new FlavorAdapter("Jelly Bean", "4.1-4.3.1", R.drawable.jellybean));
-        mFlavor.add(new FlavorAdapter("KitKat", "4.4-4.4.4", R.drawable.kitkat));
-        mFlavor.add(new FlavorAdapter("Lollipop", "5.0-5.1.1", R.drawable.lollipop));
-        mFlavor.add(new FlavorAdapter("Marshmallow", "6.0-6.0.1", R.drawable.marshmallow));
+        mFlavor.add(new FlavorAdapter("Logo", "€5-€10", R.drawable.logo));
+        mFlavor.add(new FlavorAdapter("Image", "€15-€30", R.drawable.image));
+        mFlavor.add(new FlavorAdapter("Total Colour", "€20-€40", R.drawable.full_print));
+        mFlavor.add(new FlavorAdapter("Arty", "€15-€25", R.drawable.artistic));
+        mFlavor.add(new FlavorAdapter("Personal Photos", "€15-€40", R.drawable.personal));
+        mFlavor.add(new FlavorAdapter("Multi-Language", "€10-€15", R.drawable.multi_language));
+        mFlavor.add(new FlavorAdapter("Text Plus Image", "€15-€25", R.drawable.text_image));
+        mFlavor.add(new FlavorAdapter("Text Only", "€5-€10", R.drawable.text_shirt));
+        mFlavor.add(new FlavorAdapter("Hoddies", "€25-€50", R.drawable.hoddie));
+        mFlavor.add(new FlavorAdapter("Hats", "€5-€10", R.drawable.hats));
 
     }
 }

@@ -2,8 +2,8 @@
     <string name="app_name">SDA Assign3 2020 Hasan Ashraf</string>
 
     <string-array name="ui_time_entries">
-        <item>"0"</item>
-        <item>" 2"</item>
+        <item>0</item>
+        <item>"8"</item>
         <item>" 3"</item>
         <item>" 4"</item>
         <item>" 5"</item>
@@ -27,6 +27,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="welcome">Welcome to my TShirt Store! </string>
+    <string name="welcomenote">Welcome to "The T-Shirt Store"</string>
+    <string name="welcomemessage">Create your very own Customizable T-Shirts</string>
 
 </resources>

@@ -4,7 +4,8 @@
     android:id="@+id/fragmentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductList">
+    tools:context=".ProductList"
+    android:padding="10dp">
 
 
     <androidx.recyclerview.widget.RecyclerView

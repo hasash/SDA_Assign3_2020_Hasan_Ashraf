@@ -12,11 +12,13 @@ import android.view.View;
 import com.google.android.material.tabs.TabLayout;
 
 /*
- * @author Chris Coughlan 2019
+ * @author Hasan Ashraf 2020
  */
 public class MainActivity extends AppCompatActivity {
     public static final int BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT = 1;
-
+    /**
+     * Main Activity file for desiging the toolbar, pager and tabs
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,14 +36,4 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
     }
-
-    /*
-    public void capture(View view) {
-        // used to open camera when button press
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        startActivity(intent);
-    }
-
-     */
-
 }
