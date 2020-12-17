@@ -3,17 +3,17 @@
 
     <string-array name="ui_time_entries">
         <item>0</item>
-        <item>"8"</item>
-        <item>" 3"</item>
-        <item>" 4"</item>
-        <item>" 5"</item>
+        <item>8</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
         <item>10</item>
         <item>14</item>
     </string-array>
 
     <string name="images_desc">Flavors Images</string>
-    <string name="plc_version">version</string>
-    <string name="plc_flavor">flavor</string>
+    <string name="plc_price">price</string>
+    <string name="plc_des">description</string>
     <string name="placeholder">Order T shirt</string>
 
     <string name="customer_name">Name</string>

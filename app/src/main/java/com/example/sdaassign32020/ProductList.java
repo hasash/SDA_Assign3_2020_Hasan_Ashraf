@@ -16,12 +16,12 @@ import java.util.ArrayList;
 
 /*
  * A simple {@link Fragment} subclass.
- * @author Chris Coughlan 2019
+ * @author Hasan Ashraf 2020
  */
 public class ProductList extends Fragment {
 
     private static final String TAG = "RecyclerViewActivity";
-    private ArrayList<FlavorAdapter> mFlavor = new ArrayList<>();
+    private ArrayList<StockAdapter> mstock = new ArrayList<>();
 
     public ProductList() {
         // Required empty public constructor
@@ -45,7 +45,7 @@ public class ProductList extends Fragment {
         RecyclerView recyclerView = root.findViewById(R.id.recyclerView_view);
         recyclerView.setHasFixedSize(true); // to stop recycler view to change in size
 
-        FlavorViewAdapter recyclerViewAdapter = new FlavorViewAdapter(getContext(), mFlavor);
+        StockViewAdpater recyclerViewAdapter = new StockViewAdpater(getContext(), mstock);
         recyclerView.setAdapter(recyclerViewAdapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -57,16 +57,18 @@ public class ProductList extends Fragment {
      * @return The list of items that user entered using recycler view
      */
     public void createlist(){
-        mFlavor.add(new FlavorAdapter("Logo", "€5-€10", R.drawable.logo));
-        mFlavor.add(new FlavorAdapter("Image", "€15-€30", R.drawable.image));
-        mFlavor.add(new FlavorAdapter("Total Colour", "€20-€40", R.drawable.full_print));
-        mFlavor.add(new FlavorAdapter("Arty", "€15-€25", R.drawable.artistic));
-        mFlavor.add(new FlavorAdapter("Personal Photos", "€15-€40", R.drawable.personal));
-        mFlavor.add(new FlavorAdapter("Multi-Language", "€10-€15", R.drawable.multi_language));
-        mFlavor.add(new FlavorAdapter("Text Plus Image", "€15-€25", R.drawable.text_image));
-        mFlavor.add(new FlavorAdapter("Text Only", "€5-€10", R.drawable.text_shirt));
-        mFlavor.add(new FlavorAdapter("Hoddies", "€25-€50", R.drawable.hoddie));
-        mFlavor.add(new FlavorAdapter("Hats", "€5-€10", R.drawable.hats));
+        mstock.add(new StockAdapter("Logo", "€5-€10", R.drawable.logo));
+        mstock.add(new StockAdapter("Image", "€15-€30", R.drawable.image));
+        mstock.add(new StockAdapter("Total Colour", "€20-€40", R.drawable.full_print));
+        mstock.add(new StockAdapter("Arty", "€15-€25", R.drawable.artistic));
+        mstock.add(new StockAdapter("Personal Photos", "€15-€40", R.drawable.personal));
+        mstock.add(new StockAdapter("Multi-Language", "€10-€15", R.drawable.multi_language));
+        mstock.add(new StockAdapter("Text Plus Image", "€15-€25", R.drawable.text_image));
+        mstock.add(new StockAdapter("Text Only", "€5-€10", R.drawable.text_shirt));
+        mstock.add(new StockAdapter("Hoddies", "€25-€50", R.drawable.hoddie));
+        mstock.add(new StockAdapter("Hats", "€5-€10", R.drawable.hats));
+        mstock.add(new StockAdapter("Logo", "€5-€10", R.drawable.logo)); //Repeats to Increase List Size
+        mstock.add(new StockAdapter("Image", "€15-€30", R.drawable.image)); //Repeats to increase List Size
 
     }
 }

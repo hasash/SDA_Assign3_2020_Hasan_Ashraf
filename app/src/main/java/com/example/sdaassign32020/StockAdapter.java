@@ -17,17 +17,17 @@ package com.example.sdaassign32020;
 
 
 /**
- * {@link FlavorAdapter} represents a single Android platform release.
+ * {@link StockAdapter} represents a single Android platform release.
  * Each object has 3 properties: name, version number, and image resource ID.
  * This is a basic arrayAdapter
  */
-public class FlavorAdapter {
+public class StockAdapter {
 
     // Name of the Android version (e.g. Gingerbread, Honeycomb, Ice Cream Sandwich)
-    private String mVersionName;
+    private String mitemname;
 
     // Android version number (e.g. 2.3-2.7, 3.0-3.2.6, 4.0-4.0.4)
-    private String mVersionNumber;
+    private String mprice;
 
     // Drawable resource ID
     private int mImageResourceId;
@@ -39,25 +39,25 @@ public class FlavorAdapter {
      * @param image is drawable reference ID that corresponds to the Android version
      *
      * */
-    public FlavorAdapter(String vName, String vNumber, int imageResourceId)
+    public StockAdapter(String vName, String vNumber, int imageResourceId)
     {
-        mVersionName = vName;
-        mVersionNumber = vNumber;
+        mitemname = vName;
+        mprice = vNumber;
         mImageResourceId = imageResourceId;
     }
 
     /**
      * Get the name of the Android version
      */
-    public String getVersionName() {
-        return mVersionName;
+    public String getitemname() {
+        return mitemname;
     }
 
     /**
      * Get the Android version number
      */
-    public String getVersionNumber() {
-        return mVersionNumber;
+    public String getprice() {
+        return mprice;
     }
 
     /**
